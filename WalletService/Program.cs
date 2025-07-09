@@ -6,6 +6,7 @@ var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureServices((context, services) =>
 {
+    services.AddScoped<IEventConsumer<UserCreatedEvent>, UserCreatedConsumer>();
     services.AddHostedService<RabbitMqConsumer>();
 });
 

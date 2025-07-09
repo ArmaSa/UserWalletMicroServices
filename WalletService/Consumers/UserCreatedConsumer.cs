@@ -2,15 +2,20 @@ using Contracts;
 
 namespace WalletService.Consumers;
 
-public class UserCreatedConsumer
+public class UserCreatedConsumer : IEventConsumer<UserCreatedEvent>
 {
-    public void Handle(UserCreatedEvent user)
-    {
-        Console.WriteLine($"✅ WalletService: Received UserCreatedEvent:");
-        Console.WriteLine($"   ➤ ID: {user.UserId}");
-        Console.WriteLine($"   ➤ Name: {user.FullName}");
-        Console.WriteLine($"   ➤ Email: {user.Email}");
+    private readonly ILogger<UserCreatedConsumer> _logger;
 
-        // اضافه کردن کیف پول
+    public UserCreatedConsumer(ILogger<UserCreatedConsumer> logger)
+    {
+        _logger = logger;
+    }
+
+    public Task HandleAsync(UserCreatedEvent @event)
+    {
+        _logger.LogInformation($"User created: {@event.FirstName} {@event.LastName}");
+        // Do something with the user...
+        return Task.CompletedTask;
     }
 }
+
