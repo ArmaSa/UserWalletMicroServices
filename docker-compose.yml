@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"     # پورت برای ارتباط برنامه‌ها
+      - "15672:15672"   # UI پنل مدیریت
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  user-service:
+    build:
+      context: ./UserService
+    container_name: user-service
+    ports:
+      - "5001:80"
+    depends_on:
+      - rabbitmq
+
+  wallet-service:
+    build:
+      context: ./WalletService
+    container_name: wallet-service
+    depends_on:
+      - rabbitmq
