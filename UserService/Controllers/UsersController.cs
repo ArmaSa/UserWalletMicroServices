@@ -14,14 +14,19 @@ public class UsersController : ControllerBase
     {
         _publisher = publisher;
     }
+    [HttpGet("CreateIndex")]
+    public IActionResult CreateIndex()
+    {
+        return Ok("CreateIndex !!!!");
+    }
 
-    [HttpPost]
+    [HttpPost("Create")]
     public IActionResult Create()
     {
         var user = new UserCreatedEvent
         {
             UserId = Guid.NewGuid().ToString(),
-            FullName = "Ali Rezaei",
+            FullName = "Ali Arena",
             Email = "ali@example.com"
         };
 

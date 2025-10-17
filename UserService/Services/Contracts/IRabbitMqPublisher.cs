@@ -4,5 +4,5 @@ namespace UserService.Services;
 
 public interface IRabbitMqPublisher
 {
-    void Publish(UserCreatedEvent message);
+    Task Publish(UserCreatedEvent message);
 }

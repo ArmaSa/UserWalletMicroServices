@@ -1,7 +1,7 @@
-// IEventConsumer.cs
-namespace WalletService.Consumers;
-
-public interface IEventConsumer<T>
+namespace WalletService.Consumers
 {
-    Task HandleAsync(T @event);
+    public interface IEventConsumer<T>
+    {
+        Task HandleAsync(T @event);
+    }
 }
