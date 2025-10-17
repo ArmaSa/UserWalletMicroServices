@@ -25,11 +25,14 @@ docker-compose up --build
 برای اجرای جداگانه RabbitMQ، UserService و WalletService با Docker:
 
 
-docker run -d --hostname rabbit --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+On Project Root>>
 
-cd WalletService
-dotnet run
+  docker compose up -d rabbitmq => http://localhost:15672/#/
+  
+  docker compose up --build user-service => http://localhost:5001
+  
+  docker compose up --build wallet-service => http://localhost:5002
+  
 
-cd UserService
-dotnet run
+  
 
